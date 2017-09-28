@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色分配权限</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="css/optiscroll.css">
+    <style>
+        body{
+            /*padding: 15px;*/
+            /*background: rgb(229, 243, 233);*/
+        }
+        .show{
+            display: block;
+        }
+        .hide{
+            display: none;
+        }
+        /*body{*/
+        /*padding: 80px;*/
+        /*}*/
+        #startbtn{
+            margin: 20px;
+        }
+        #waitAudit{
+            background: darkred;
+            border-radius: 20px;
+            border: solid 4px darkred;
+            opacity: 0.8;
+            box-shadow: 0px 0px 10px 6px darkred;
+            margin-bottom: 10px;
+            padding: 20px;
+            color: #ffffff;
+        }
+        #waitAudit table>tbody>tr{
+            /*cursor: pointer;*/
+        }
+        #waitAudit table>tbody>tr:hover{
+            cursor: pointer;
+            background: #286385;
+        }
+
+        #presentAudit{
+            margin-top: 20px;
+            border: solid 4px #539a4a;
+            box-shadow: 0px 0px 10px 6px #539a4a;
+            border-radius: 20px;
+            padding: 20px;
+            display: none;
+            background: #539a4a;
+            color: #ffffff;
+            opacity: 0.8;
+        }
+        #presentAudit .operate{
+            padding-bottom: 20px;
+        }
+        #presentAudit .operate .btns{
+            margin: 80px auto;
+            /*display: none;*/
+        }
+
+        #manage{
+            border: solid 4px  #ec971f;
+            box-shadow: 0px 0px 10px 6px  #ec971f;
+            border-radius: 20px;
+            padding: 10px;
+            margin-top: 20px;
+            display:none;
+            background: #ec971f;
+            opacity: 0.8;
+            /*background: rgba(236, 151, 31, 0.7);*/
+        }
+        #manage select{
+            margin: 0 auto;
+            border-radius: 5px;
+            border: solid 1px #539a4a;
+            box-shadow: 0px 0px 3px 1px #4e9a49;
+            margin-bottom: 3px;
+            background: #f7ecb5;
+            font-size: 18px;
+        }
+        #manage .chooserole{
+            /*display: none;*/
+        }
+        #manage .sendmsg{
+            /*display: none;*/
+        }
+        button:hover{
+            border: solid 1px #2a9a71;
+            box-shadow: 0px 0px 3px 1px #2a9a71;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="position:fixed;z-index:-1;height: 100%;width: 100%;"></canvas>
+<div style="height: 100px"></div>
+<div class="container" >
+    <div class="row clearfix" id="waitAudit">
+        <div class="table-responsive">
+            <table class="table table-hover" class="waitAuditTable" style="font-size: 18px;">
+                <caption class="text-center"><h2 style="color: #ffffff">等待分配权限的角色</h2></caption>
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>创建人</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>张三</td>
+                    <td>kdjg66</td>
+                </tr>
+                <tr>
+                    <td>李小四</td>
+                    <td>kgsd00</td>
+                </tr>
+                <tr>
+                    <td>玛丽</td>
+                    <td>guihf42</td>
+                </tr>
+                <tr>
+                    <td>Tom</td>
+                    <td>dt4</td>
+                </tr>
+                </tbody>
+            </table>
+            <ul class="pagination" style="float: right">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row clearfix" id="startbtn">
+        <div class="col-md-12 column" >
+            <button type="button" class="btn btn-success btn-lg active center-block">开始分配权限</button>
+        </div>
+    </div>
+    <div class="row clearfix" id="presentAudit">
+        <h2 class="text-center" style="color: #ffffff">详细信息</h2>
+        <div class="col-md-6 column">
+            <form class="form-horizontal" role="form" style="font-size: 18px;">
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label">角色名称</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" name="name" id="name">李小五</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label">角色描述</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" name="describe" id="describe">这是一个狠角色，妈呀好怕怕。
+                        咦。你走~
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label">创建人</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" name="buildperson" id="buildperson">大哥</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label">创建日期</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" name="builddate" id="builddate">2017/8/1</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label">修改人</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" name="updateperson" id="updateperson">二哥</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="col-sm-3 control-label">修改日期</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" name="updatedate" id="updatedate">2017/8/2</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 column operate" >
+            <div class="btns" style="width: 80%;">
+                <button type="button" id="passbtn" class="btn btn-warning btn-default btn-block active">分配权限</button>
+                <button type="button" id="backbtn" class="btn btn-info btn-block btn-primary active">返回</button>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix" id="manage">
+        <div class="row chooserole">
+            <h2 class="text-center" style="color: #ffffff">权限分配</h2>
+            <div class="roles col-sm-6">
+                <select name="roles" multiple="multiple" class="optiscroll center-block" id="roles" style=" width: 60%;height: 250px">
+                    <option value="1"> 选项1 </option>
+                    <option value="2"> 选项2 </option>
+                    <option value="3"> 选项3 </option>
+                    <option value="4"> 选项4 </option>
+                    <option value="5"> 选项5 </option>
+                    <option value="6"> 选项6 </option>
+                    <option value="7"> 选项7 </option>
+                </select>
+                <button type="button" id="add" style="width: 60%" class="btn btn-block btn-success center-block">选中点击添加角色</button>
+            </div>
+            <div class="alreadychoose col-sm-6" style="margin-bottom: 10px;">
+                <select name="roles" multiple="multiple" class="optiscroll center-block" id="choosedroles" style="width: 60%;height: 250px">
+                    <option value="8"> 选项8 </option>
+                </select>
+                <button type="button" id="remove" style="width: 60%" class="btn btn-block btn-danger center-block">选中点击删除角色</button>
+            </div>
+            <div class="center-block" style="">
+                <!--<button  type="button"  class="btn btn-warning " style="width: 150px;">返回</button>-->
+                <button  type="button"  class="btn center-block" id="rolesbtn" style="width: 150px;background: #286385;color: #fff">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery/jquery-2.1.1.min.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<script src="js/jquery/jquery.optiscroll.js"></script> <!--滚动条样式-->
+<script src="js/background/milkybg.js"></script>
+<script>
+    $(function () {
+        $('#startbtn').on('click',function () {
+            $(this).removeClass('show').addClass('hide');
+            $('#presentAudit').addClass('show')
+        })
+        $('#backbtn').on('click',function () {
+            $('#presentAudit').removeClass('show').addClass('hide');
+            $('#startbtn').removeClass('hide').addClass('show');
+            $('#manage').removeClass('show').addClass('hide');
+        })
+
+        $('#passbtn').on('click',function () {
+//            $('#btns').toggleClass('hide');
+            $('#manage').removeClass('hide').addClass('show');
+            $('#manage .chooserole').removeClass('hide').addClass('show');
+        })
+        $('#add').on('click',function () {
+            $('#roles option:selected').appendTo('#choosedroles');
+        })
+        $('#remove').on('click',function () {
+            $('#choosedroles option:selected').appendTo('#roles');
+        })
+        $('#rolesbtn').on('click',function () {
+            var list=$('#choosedroles option');
+            var idlist=[];
+            list.each(function (index) {
+                idlist.push(list[index].value);
+                console.log(list[index].value)
+            })
+            console.log(list);
+            console.log(idlist);
+        })
+    })
+</script>
+
+</body>
+</html>

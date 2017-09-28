@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <style>
+        body{
+            /*padding: 30px;*/
+            background: rgb(229, 243, 233);
+        }
+        #title{
+            height: 55px;
+            /*width: 100%;*/
+            /*margin: 40px auto;*/
+            margin-bottom: 30px;
+            background: #015775;
+            border: solid 3px #015775;
+            box-shadow: 0px 0px 2px 6px #015775;
+            border-radius: 3px;
+        }
+        #userlist{
+            padding: 20px;
+            /*height: 50px;*/
+            background: #548b9a;
+            border: solid 1px #548b9a;
+            box-shadow: 0px 0px 5px 6px #548b9a;
+            border-radius: 5px;
+            margin-bottom:20px;
+            color: #ffefcf;
+        }
+        #datalist{
+            padding: 20px;
+            /*height: 50px;*/
+            background: #548b9a;
+            border: solid 1px #548b9a;
+            box-shadow: 0px 0px 5px 6px #548b9a;
+            border-radius: 5px;
+            color: #ffefcf;
+        }
+        table{
+            padding: 5px;
+            font-size: 20px;
+        }
+        table>tbody img{
+            width: 36px;
+            height: 36px;
+            margin-right: 5px;
+        }
+        input[type="checkbox"]{
+            width: 20px;
+            height: 20px;;
+        }
+        h3{
+            color: #ffefcf;
+        }
+        table tr:hover{
+            background: #286385;
+        }
+        table tr
+    </style>
+</head>
+<body>
+<canvas id="canvas" style="position:fixed;z-index:-1;height: 100%;width: 100%;"></canvas>
+<div class="container">
+    <!--<div style="height: 100px"></div>-->
+    <div class="row">
+        <div class="col-sm-12" id="title">
+            <span class="text-left"><h3 style="color: #ffffff">数据权限</h3></span>
+        </div>
+    </div>
+    <form class="row">
+        <div class="col-sm-4" id="userlist" method="post">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>用户</th>
+                    <th>名称</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Bangalore</td>
+                    <td>560001</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Mumbai</td>
+                    <td>400003</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Pune</td>
+                    <td>411027</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-offset-1 col-sm-7" id="datalist">
+            <table class="table  table-bordered">
+                <caption><h3>电梯列表</h3></caption>
+                <thead>
+                <tr>
+                    <th><input type="checkbox" id="datacheckall"></th>
+                    <th>电梯信息</th>
+                    <th>状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input  name="dataitem" type="checkbox"></td>
+                    <td>
+                        <a href="#" class="pull-left"><img src="img/1.jpg" alt=""/></a>
+                        <div class="media-body">
+                            <div class="pull-right badge alert-info">201712110003223</div>
+                            <h4 class="media-heading">兴业1号楼1#</h4>
+                            <p>电梯品牌：迅达</p>在电梯现场部署电子标签，维保人员持专用阅读设备阅读现场标签，便可实现现场签到。
+                        </div>
+                    </td>
+                    <td><div class="label label-success">联网运行</div></td>
+                </tr>
+                <tr>
+                    <td><input name="dataitem" type="checkbox"></td>
+                    <td>
+                        <a href="#" class="pull-left"><img src="img/1.jpg" alt=""/></a>
+                        <div class="media-body">
+                            <div class="pull-right badge alert-info">201712110003223</div>
+                            <h4 class="media-heading">兴业1号楼1#</h4>
+                            <p>电梯品牌：迅达</p>在电梯现场部署电子标签，维保人员持专用阅读设备阅读现场标签，便可实现现场签到。
+                        </div>
+                    </td>
+                    <td><div class="label label-success">联网运行</div></td>
+                </tr>
+                <tr>
+                    <td><input name="dataitem" type="checkbox"></td>
+                    <td>
+                        <a href="#" class="pull-left"><img src="img/1.jpg" alt=""/></a>
+                        <div class="media-body">
+                            <div class="pull-right badge alert-info">201712110003223</div>
+                            <h4 class="media-heading">兴业1号楼1#</h4>
+                            <p>电梯品牌：迅达</p>在电梯现场部署电子标签，便可实现现场签到。
+                        </div>
+                    </td>
+                    <td><div class="label label-success">联网运行</div></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-12">
+            <div class="center-block" style="width: 320px">
+            <button class="btn btn-warning backbtn" style="margin-top: 30px;width: 150px;font-size: 20px"><span class="glyphicon glyphicon-circle-arrow-left"></span> 返回</button>
+            <button class="btn btn-danger" style="margin-top: 30px;width: 150px;font-size: 20px"><span class="glyphicon glyphicon glyphicon-trash"></span> 删除</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="js/jquery/jquery.min.js"></script>
+<!--<script src="js/bootstrap/bootstrap.min.js"></script>-->
+<script src="js/background/milkybg.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#usercheckall').click(function(){
+            $('[name=useritem]').attr('checked',this.checked);//this 代表谁
+        });
+        $('[name=useritem]').click(function(){
+            var $tmp = $('[name=useritem]');//不加：checked为啥不行呢
+            $('#usercheckall').attr('checked',$tmp.length == $tmp.filter(':checked').length)
+        });
+
+        $('#datacheckall').click(function(){
+            $('[name=dataitem]').attr('checked',this.checked);//this 代表谁
+        });
+        $('[name=dataitem]').click(function(){
+            var $tmp = $('[name=dataitem]');//不加：checked为啥不行呢
+            $('#datacheckall').attr('checked',$tmp.length == $tmp.filter(':checked').length)
+        });
+        $('.backbtn').on('click',function () {
+            history.back();
+        })
+    })
+</script>
+</body>
+</html>
